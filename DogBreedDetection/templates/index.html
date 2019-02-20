@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Image Detection</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body class="container">
+    <br><br>
+    <h2>Chương trình nhận diện 120 loài chó</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="image_url">Paste URL here</label>
+            <input type="url" class="form-control" id="image_url" name="image_url" placeholder="Input URL of image here">
+        </div>
+
+        <div class="form-group" >
+            <label for="image">Or select file</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="image" name="image">
+                <label class="custom-file-label" for="image">Choose file</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Dự đoán</button>
+    </form>
+
+    <div class="result">
+        <p>Kết quả: </p>
+        {% if labels %}
+            {{ labels }}
+        {% endif %}
+
+        {% if error %}
+            <p style="color: red;font-weight: bold;">{{error}}</p>
+        {% endif %}
+    </div>
+    <script>
+        $('#image').on('change',function(){
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+    </script>
+</body>
+</html>

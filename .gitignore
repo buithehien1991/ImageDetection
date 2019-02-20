@@ -2,3 +2,6 @@ venv
 .idea
 uploads
 training_data/flower_photos
+DogBreedDetection/.idea
+DogBreedDetection/raw_data
+DogBreedDetection/venv
